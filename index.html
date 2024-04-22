@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pigeon Registeration</title>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+<script src="lib/jquery-3.3.1.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<link href="lib/bootstrap.min.css" rel="stylesheet" />
+<script>
+//init LIFF
+function initializeApp(data) {
+
+let urlParams = new URLSearchParams(window.location.search);
+$(`#firstname`).val(urlParams.toString());
+$(`#lastname`).val(urlParams.toString());
+$(`#email`).val(urlParams.toString());
+$(`#mobile`).val(urlParams.toString());
+$(`#userid`).val(data.context.userId);
+$(`#UserInfo`).val(profile.displayName);
+}
+
+//ready
+$(function () {
+//init LIFF
+
+liff.init(function (data) {
+initializeApp(data);
+});
+
+//ButtonGetProfile
+
+$(`#ButtonGetProfile`).click(function () {
+liff.getProfile().then(
+profile=> {
+$(`#UserInfo`).val(profile.displayName);
+alert(`done`);
+}
+);
+});
+//ButtonSendMsg #QueryString
+$(`#ButtonSendMsg`).click(function () {
+liff.sendMessages([
+{
+type: `text`,
+text: $(`คุณเคยลงทะเบียนแล้ว`).val()
+
+}
+
+])
+
+.then(() => {
+
+alert(`done`);
+
+})
+
+});
+
+});
+
+</script>
+
+<link href="lib/bootstrap.min.css" rel="stylesheet" />
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Add padding to containers */
+  .container {
+    padding: 16px;
+    background-color: white;
+    display: flex;  
+    flex-direction: column;
+  }
+
+  /* Full-width input fields */
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  /* Overwrite default styles of hr */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+
+
+  /* Add a blue text color to links */
+  a {
+    color: dodgerblue;
+  }
+
+  /* Set a grey background color and center the text of the "sign in" section */
+  .signin {
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+
+.boxbtn {
+display: flex;
+justify-content: center;
+width: 100%;
+
+}
+/* CSS */
+.btnRegis {
+  width: 30%;
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  /* max-width: 100%; */
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* width: auto; */
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.btnRegis:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.btnRegis:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.btnRegis:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.btnRegis:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.btnRegis:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.btnRegis:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.btnRegis:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.btnRegis:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+</style>
+</head>
+
+<body>
+
+<form action="save.php" method="get">
+  <div class="container">
+    <h1>Register</h1>
+    <hr />
+<div class="col-md-6" style="margin:5px">
+
+  <label for="firstname"><b>First Name</b></label>
+  <input
+  type="text"
+    placeholder="Enter First Name"
+    name="firstname"
+    id="firstname"
+    required
+  />
+
+
+  <label for="lastname"><b>Last Name</b></label>
+  <input
+  type="text"
+    placeholder="Enter Last Name"
+    name="lastname"
+    id="lastname"
+    required
+  />
+
+  <label for="email"><b>Email</b></label>
+  <input
+    type="text"
+    placeholder="Enter Email"
+    name="email"
+    id="email"
+    required
+  />
+
+
+  <label for="mobile"><b>Mobile</b></label>
+  <input
+    type="text"
+    placeholder="Enter Mobile"
+    name="mobile"
+    id="mobile"
+    required
+  />
+
+
+  <p>
+    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> I have read and accept the  <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+  </p>
+  <div class="boxbtn">
+    <button type="submit" class="btnRegis" role="button">Register</button>
+
+  </div>
+</div>
+</div>
+</div>
+</form>
+</body>
+</html>
